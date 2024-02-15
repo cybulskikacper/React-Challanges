@@ -4,11 +4,9 @@ function Header() {
 	return (
 		<header>
 			<div className="button-container">
-				<div className="button-container">
-					<button>Our Menu</button>
-					<button>About</button>
-					<button>Hours & Location</button>
-				</div>
+				<button className="menu btn">Our Menu</button>
+				<button className='about btn'>About</button>
+				<button className='hours btn'>Hours & Location</button>
 			</div>
 		</header>
 	)

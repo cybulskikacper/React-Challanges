@@ -89,6 +89,10 @@ button:focus:not(:focus-visible) {
 
 body {
 	margin: 0;
+	padding: 0;
+	min-height: 100vh;
+	position: relative;
+
 	background-image: url('./src/assets/background.jpg');
 	background-size: cover;
 	background-attachment: fixed;
@@ -121,6 +125,7 @@ footer {
 	justify-content: center;
 	align-items: center;
 	color: #dddddd;
+	overflow: hidden;
 }
 
 main {
@@ -132,6 +137,7 @@ main {
 	flex-direction: column;
 	justify-content: space-between;
 	gap: 15px;
+	padding-bottom: 75px;
 }
 
 .logo-container {
@@ -179,7 +185,88 @@ img {
 MAKING THE PAGE MORE RESPONSIVE
 */
 
-@media (min-width: 576px) and (max-width: 768px) {
+@media (min-width: 375px) and (max-width: 768px) {
+	.btn {
+		font-size: 20px;
+	}
 	.info-container {
+		font-size: 22px;
+	}
+}
+
+@media (max-width: 280px) {
+	.logo-container {
+		font-size: 42px;
+	}
+
+	footer {
+		margin: 0;
+		padding: 10px;
+		width: 300px;
+	}
+}
+
+@media (max-width: 768px) {
+	.btn {
+		font-size: 25px;
+		padding: 30px;
+	}
+
+	.info-container {
+		font-size: 30px;
+	}
+
+	footer {
+		font-size: 32px;
+	}
+
+	span {
+		font-size: 40px;
+	}
+}
+
+@media (min-width: 767px) {
+	.btn {
+		font-size: 25px;
+		padding: 30px;
+	}
+
+	.info-container {
+		font-size: 33px;
+	}
+
+	footer {
+		margin: 0;
+		height: 200px;
+		font-size: 29px;
+	}
+	span {
+		font-size: 35px;
+	}
+}
+
+@media (min-width: 912px) and (max-width: 1400px) {
+	footer {
+		margin: 0;
+		height: 140px;
+		font-size: 26px;
+	}
+
+	span {
+		font-size: 35px;
+	}
+}
+
+@media (max-width: 280px) and (max-width: 653px) {
+	.btn {
+		font-size: 12px;
+	}
+
+	.info-container {
+		font-size: 20px;
+	}
+
+	footer {
+		height: 100px;
 	}
 }
