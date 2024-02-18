@@ -1,35 +1,49 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react'
+import { nanoid } from 'nanoid'
 
-function App() {
-  const [count, setCount] = useState(0)
+import housesForSale from './data/housesForSale'
+import HouseCard from './components/HouseCard'
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+import './index.css'
+
+export default function App() {
+	const houseCards = housesForSale.map((houseData, index, array) => {
+		return (
+			<HouseCard
+				key={houseData.id}
+				houseData={houseData}
+				index={index}
+				array={array}
+				// passing props
+
+				houseGeneral={{
+					price: houseData.price,
+					location: houseData.location,
+					squareFeet: houseData.squareFeet,
+					acres: houseData.acres,
+					yearBuilt: houseData.yearBuilt,
+				}}
+				houseRooms={{
+					bedrooms: houseData.bedrooms,
+					bathrooms: houseData.bathrooms,
+					otherRooms: houseData.otherRooms,
+					garage: houseData.garage,
+				}}
+				houseAdditional={{
+					airConditioning: houseData.airConditioning,
+					heating: houseData.heating,
+					haunted: houseData.haunted,
+				}}
+			/>
+		)
+	})
+
+	return (
+		<div className="wrapper">
+			<header>
+				<img className="logo" src="./src/assets/logo.png" />
+			</header>
+			<div className="house-cards-container">{houseCards}</div>
+		</div>
+	)
 }
-
-export default App
