@@ -3,8 +3,8 @@ import housesForSale from '../data/housesForSale'
 
 export default function HouseCard({ houseData, index, array, houseGeneral, houseRooms, houseAdditional }) {
 	const { price, location, squareFeet, acres, yearBuilt } = houseGeneral
-	const { bedrooms, bathrooms, otherRooms, garage } = houseRooms
-	const { airConditioning, heating, haunted } = houseAdditional
+	const { bedrooms, bathrooms, otherRooms } = houseRooms
+	const { airConditioning, heating, garage, haunted } = houseAdditional
 
 	return (
 		<div className="house-card" key={houseData.id}>
@@ -14,54 +14,23 @@ export default function HouseCard({ houseData, index, array, houseGeneral, house
 			<img src={houseData.image} />
 			<div>
 				<ul>
-					<li>
-						<span>Price:</span>
-						{price}
-					</li>
-					<li>
-						<span>Location:</span>
-						{location}
-					</li>
-					<li>
-						<span>Square Feet:</span>
-						{squareFeet}
-					</li>
-					<li>
-						<span>Acres:</span>
-						{acres}
-					</li>
-					<li>
-						<span>Year Built:</span>
-						{yearBuilt}
-					</li>
-					<li>
-						<span>Bedrooms:</span>
-						{bedrooms}
-					</li>
-					<li>
-						<span>Bathrooms:</span>
-						{bathrooms}
-					</li>
-					<li>
-						<span>Other Rooms:</span>
-						{otherRooms}
-					</li>
-					<li>
-						<span>Garage:</span>
-						{garage ? 'Yes' : 'No'}
-					</li>
-					<li>
-						<span>Air Conditioning:</span>
-						{airConditioning ? 'Yes' : 'No'}
-					</li>
-					<li>
-						<span>Heating:</span>
-						{heating ? 'Yes' : 'No'}
-					</li>
-					<li>
-						<span>Haunted:</span>
-						{haunted ? 'Yes' : 'No'}
-					</li>
+					{Object.entries(houseGeneral).map(([key, value]) => (
+						<li key={key}>
+							<span>{key}:</span> {value}
+						</li>
+					))}
+
+					{Object.entries(houseRooms).map(([key, value]) => (
+						<li key={key}>
+							<span>{key}:</span> {value}
+						</li>
+					))}
+
+					{Object.entries(houseAdditional).map(([key, value]) => (
+						<li key={key}>
+							<span>{key}:</span> {value ? 'Yes' : 'No'}
+						</li>
+					))}
 				</ul>
 			</div>
 		</div>

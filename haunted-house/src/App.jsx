@@ -14,7 +14,7 @@ export default function App() {
 				houseData={houseData}
 				index={index}
 				array={array}
-				// passing props
+				//
 
 				houseGeneral={{
 					price: houseData.price,
@@ -27,11 +27,11 @@ export default function App() {
 					bedrooms: houseData.bedrooms,
 					bathrooms: houseData.bathrooms,
 					otherRooms: houseData.otherRooms,
-					garage: houseData.garage,
 				}}
 				houseAdditional={{
 					airConditioning: houseData.airConditioning,
 					heating: houseData.heating,
+					garage: houseData.garage,
 					haunted: houseData.haunted,
 				}}
 			/>
