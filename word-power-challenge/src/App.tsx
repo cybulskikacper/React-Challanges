@@ -32,34 +32,11 @@ export default function App() {
 		<div className="wrapper">
 			<Header />
 
-			<NavButtons
-				wordsDataArray={wordsDataArray}
-				currentWord={currentWord}
-				setCurrentWord={setCurrentWord}
-				position="top"
-			/>
+			<NavButtons {...{ wordsDataArray, currentWord, setCurrentWord }} position="top" />
 
-			<Word
-				word={currentWord.word}
-				pronunciation={currentWord.pronunciation}
-				definition={currentWord.definition}
-				icon={currentWord.icon}
-				category={currentWord.category}
-				note={currentWord.note}
-				partOfSpeech={currentWord.partOfSpeech}
-				example={currentWord.example}
-				synonyms={currentWord.synonyms}
-				antonyms={currentWord.antonyms}
-				etymology={currentWord.etymology}
-				array={wordsDataArray}
-			/>
+			<Word {...currentWord} array={wordsDataArray} />
 
-			<NavButtons
-				wordsDataArray={wordsDataArray}
-				currentWord={currentWord}
-				setCurrentWord={setCurrentWord}
-				position="bottom"
-			/>
+			<NavButtons {...{ wordsDataArray, currentWord, setCurrentWord }} position="bottom" />
 
 			<Footer />
 		</div>
