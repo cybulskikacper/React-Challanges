@@ -1,35 +1,57 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react'
+import Message from './components/Message'
+import Header from './components/Header'
+import Footer from './components/Footer'
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+	const passCode = '1001'
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+	const [userInput, setUserInput] = React.useState({
+		charOne: '',
+		charTwo: '',
+		charThree: '',
+		charFour: '',
+	})
+
+	const [verified, setVerified] = React.useState(undefined)
+
+	/* Challenge
+
+	The verification code form doesn't yet check the user's input. Your job is to finish setting it up as follows: 
+	
+		1. When the user types a character in one of the password inputs, the corresponding 
+		   property of the userInput state object should be updated, while preserving the other properties. Note that the property names and the names of the inputs match each other (charOne, charTwo, etc.)
+		   
+		2. When the user clicks the submit button, a submit handling function should prevent the 
+		   page from refreshing and check if the combination of the four characters stored in userInput equals the passCode value (declared on line 7 above).
+		   
+		3. If they match, the verified state value should be set to true. Otherwise, it should 
+		   be set to false. 
+		   
+		4. Your code should be as DRY as possible!
+*/
+
+	return (
+		<div className="wrapper">
+			<Header />
+
+			<form>
+				<Message status={verified} />
+
+				<div>
+					<input required type="password" name="charOne" />
+
+					<input required type="password" name="charTwo" maxLength="1" />
+
+					<input required type="password" name="charThree" maxLength="1" />
+
+					<input required type="password" name="charFour" maxLength="1" />
+				</div>
+
+				<button disabled={verified}>Submit</button>
+			</form>
+
+			<Footer />
+		</div>
+	)
 }
-
-export default App
