@@ -7,7 +7,7 @@ body {
 	height: 100vh;
 	width: 100vh;
 	min-width: 1000px;
-	background: url('./images/beach-background.jpg');
+	background: url('./src/assets/beach-background.jpg');
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -194,7 +194,7 @@ input:checked + .slider:before {
 }
 
 .remove-button {
-	background: url('./images/remove-button-image.svg');
+	background: url('./src/assets/remove-button-image.svg');
 	width: 30px;
 	height: 30px;
 	border: none;

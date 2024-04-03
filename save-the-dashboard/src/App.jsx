@@ -2,13 +2,14 @@ import React from 'react'
 import { nanoid } from 'nanoid'
 
 import blankConfig from './data/blankConfig'
-
 import Clock from './components/Clock'
 import News from './components/News'
 import Quote from './components/Quote'
 import Stocks from './components/Stocks'
 import ToDo from './components/ToDo'
+
 import Weather from './components/Weather'
+
 import ConfigMenu from './components/ConfigMenu'
 
 export default function App() {
@@ -31,11 +32,16 @@ export default function App() {
 		return { ...widget, positionData: { ...widget.positionData } }
 	})
 
-	const [widgetConfig, setWidgetConfig] = React.useState(DEFAULT_CONFIG)
+	const getWidets = localStorage.getItem('saveWidets')
+	const parseWidets = JSON.parse(getWidets)
+
+	const [widgetConfig, setWidgetConfig] = React.useState(() => parseWidets || DEFAULT_CONFIG)
 	const [saveRequested, setSaveRequested] = React.useState(false)
 
 	function save() {
 		setSaveRequested(true) // This causes the green "Saved!" message to be rendered on line 130 below. The state then gets set back to false by the setTimeout on line 70, which removes the message.
+
+		localStorage.setItem('saveWidets', JSON.stringify(widgetConfig))
 	}
 
 	/****** Write your code above! *******************************************************************  
