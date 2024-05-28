@@ -4,16 +4,36 @@ import FrontMessage from './components/FrontMessage'
 import InnerMessage from './components/InnerMessage'
 
 export default function App() {
-	const [cardOpen, setCardOpen] = React.useState(false)
-	const [isMouseDown, setIsMouseDown] = React.useState(false)
+	const [cardData, setCardData] = React.useState({
+		cardOpen: false,
+		MouseButtonDown: false,
+		initialPostion: undefined,
+	})
 
-	const handleMouseDown = () => {
-		setIsMouseDown(true)
+	function handleMouseDown(e) {
+		setCardData({
+			MouseButtonDown: true,
+			cardOpen: false,
+			initialPostion: e.clientX,
+		})
 	}
 
-	const handleMouseUp = () => {
-		setIsMouseDown(false)
+	function handleMouseUp(e) {
+		setCardData(prev => ({
+			...prev,
+			MouseButtonDown: false,
+		}))
 	}
+
+	function handleMouseMove(e) {
+		if (cardData.MouseButtonDown && !cardData.cardOpen) {
+			if (cardData.initialPostion - e.clientX >= 50) {
+				setCardData(prev => ({ ...prev, cardOpen: true }))
+			}
+		}
+	}
+
+	console.log(cardData)
 
 	return (
 		<div className="wrapper">
@@ -22,11 +42,10 @@ export default function App() {
 				<InnerMessage />
 
 				<div
-					onClick={() => setCardOpen(!cardOpen)}
-					onMouseDown={handleMouseDown}
 					onMouseUp={handleMouseUp}
-					onMouseLeave={handleMouseUp}
-					className={`cover ${cardOpen && 'open'}`}>
+					onMouseMove={handleMouseMove}
+					onMouseDown={handleMouseDown}
+					className={`cover ${cardData.cardOpen && 'open'}`}>
 					<FrontMessage />
 					<img src="./src/assets/forLoop.png" />
 				</div>
