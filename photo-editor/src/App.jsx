@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 export default function App() {
 	const [filter, setFilter] = React.useState({
@@ -7,7 +7,71 @@ export default function App() {
 		saturation: 1,
 	})
 
-	/* Challenge
+	function handleChange(event) {
+		setFilter(prev => ({ ...prev, [event.target.name]: event.target.value }))
+	}
+
+	useEffect(() => {
+		document.documentElement.style.setProperty('--brightness', filter.brightness)
+		document.documentElement.style.setProperty('--contrast', filter.contrast)
+		document.documentElement.style.setProperty('--saturation', filter.saturation)
+	}, [filter])
+
+	return (
+		<div className="main-container">
+			<h1>
+				<span>📷</span> Photo Editor <span>📷</span>
+			</h1>
+
+			<div className="image-container">
+				<img src="./src/assets/kunal-goswami-CuUn__aMGD4-unsplash.jpg" />
+			</div>
+
+			<form>
+				<label>
+					<input
+						type="range"
+						name="brightness"
+						min={0}
+						max={2}
+						step={0.1}
+						onChange={handleChange}
+						value={filter.brightness}
+					/>
+					<span>Brightness</span>
+				</label>
+
+				<label>
+					<input
+						type="range"
+						name="contrast"
+						min={0}
+						max={2}
+						step={0.1}
+						onChange={handleChange}
+						value={filter.contrast}
+					/>
+					<span>Contrast</span>
+				</label>
+
+				<label>
+					<input
+						type="range"
+						name="saturation"
+						min={0}
+						max={2}
+						step={0.1}
+						onChange={handleChange}
+						value={filter.saturation}
+					/>
+					<span>Saturation</span>
+				</label>
+			</form>
+		</div>
+	)
+}
+
+/* Challenge
 
     The range inputs don't yet do anything. Your task is to make them work as follows: 
     
@@ -22,33 +86,3 @@ export default function App() {
 		   
 		4. Try to make your code as DRY as possible! 
 */
-
-	return (
-		<div className="main-container">
-			<h1>
-				<span>📷</span> Photo Editor <span>📷</span>
-			</h1>
-
-			<div className="image-container">
-				<img src="./src/assets/kunal-goswami-CuUn__aMGD4-unsplash.jpg" />
-			</div>
-
-			<form>
-				<label>
-					<input type="range" name="brightness" min={0} max={2} step={0.1} />
-					<span>Brightness</span>
-				</label>
-
-				<label>
-					<input type="range" name="contrast" min={0} max={2} step={0.1} />
-					<span>Contrast</span>
-				</label>
-
-				<label>
-					<input type="range" name="saturation" min={0} max={2} step={0.1} />
-					<span>Saturation</span>
-				</label>
-			</form>
-		</div>
-	)
-}
