@@ -114,15 +114,3 @@ export default function App() {
 		</div>
 	)
 }
-
-/*-------------------------------------------------------------------------*/
-
-/* Challenge
-
-      .  
-		   
-		
-		   
-		Bonus Challenge: Even though the four functions listed above will work the way they're set up (after you fix the fourth one), there s something unorthodox and arguably "wrong" going on with them — something the React Documentation warns against. See if you can figure out what it is!  
-		
- */
