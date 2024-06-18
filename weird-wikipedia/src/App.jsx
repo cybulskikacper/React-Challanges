@@ -22,7 +22,6 @@ export default function App() {
 		   completing these tasks. However, if numOfArticles is changed to a higher or lower number,a corresponding number of list items should be rendered. Test this!  
 */
 
-
 	const renderArticles = () => {
 		return currentArticles.map((article, index) => (
 			<li className="article" key={index}>

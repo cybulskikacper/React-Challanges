@@ -67,19 +67,10 @@ export default function App() {
 	}
 
 	function toggleExpand(id) {
-		const targetArticle = getTargetArticle(id)
-		targetArticle.expanded = !targetArticle.expanded
-		setArticleQueue(savedArticles)
-
-		setArticleQueue(prevArticles => {
-			return prevArticles.map(article => {
-				if (article.id === id) {
-					return { ...article, expanded: !article.expanded }
-				}
-				return article
-			})
-		})
-	}
+        const targetArticle = getTargetArticle(id)
+        targetArticle.expanded = !targetArticle.expanded
+        setArticleQueue([...savedArticles])
+    }
 
 	function handleButtonClick(event) {
 		const buttonType = event.target.getAttribute('data-button-type')

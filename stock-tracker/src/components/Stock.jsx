@@ -27,7 +27,7 @@ export default function Stock(props) {
 				<p>{stockName}</p>
 			</div>
 			<div>
-				<p>${currentPrice}</p>
+				<p>${currentPrice.toFixed(2)}</p>
 				<p>Current Price</p>
 			</div>
 			<div>
