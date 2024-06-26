@@ -11,7 +11,28 @@ export default function App() {
 		setSearchInput(inputRef.current.value.trim())
 	}
 
-	/* Challenge
+	const filtredSonnets = sonnetsData.filter(sonnet => sonnet.lines.map(line => line.includes(searchInput)))
+
+	return (
+		<div className="wrapper">
+			<Header searchProps={{ inputRef, handleClick }} />
+
+			<div className="sonnets-container">
+				{filtredSonnets.map(sonnet => (
+					<div key={nanoid()} className="sonnet">
+						<h2>{sonnet.title}</h2>
+						<h3>{sonnet.number}</h3>
+						{sonnet.lines.map((line, index) => (
+							<p key={index}>{line}</p>
+						))}
+					</div>
+				))}
+			</div>
+		</div>
+	)
+}
+
+/* Challenge
 
   When the user clicks the "Search" button, the text they wrote in the input field becomes the value of the searchInput state (this code has already been written). Using this value, your task is to complete the user's search as follows: 
   
@@ -24,15 +45,6 @@ export default function App() {
     3. Test your code by searching for common words like "love", "summer", "winter", and "strange" 
        as well as words that don't appear in any sonnets, like "hello" and "weird."
 */
-
-	return (
-		<div className="wrapper">
-			<Header searchProps={{ inputRef, handleClick }} />
-
-			<div className="sonnets-container"></div>
-		</div>
-	)
-}
 
 /*Bonus Challenges
       
