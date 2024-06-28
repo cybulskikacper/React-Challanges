@@ -11,7 +11,16 @@ export default function App() {
 		setSearchInput(inputRef.current.value.trim())
 	}
 
-	const filtredSonnets = sonnetsData.filter(sonnet => sonnet.lines.map(line => line.includes(searchInput)))
+	const filtredSonnets = sonnetsData.filter(sonnet =>
+		sonnet.lines.some(line => line.toLowerCase().includes(searchInput.toLowerCase()))
+	)
+
+	const highlightSearchTerm = line => {
+		if (!searchInput) return line
+
+		const regex = new RegExp(`(${searchInput})`, 'gi')
+		return line.split(regex).map((part, index) => (regex.test(part) ? <mark key={index}>{part}</mark> : part))
+	}
 
 	return (
 		<div className="wrapper">
@@ -23,7 +32,7 @@ export default function App() {
 						<h2>{sonnet.title}</h2>
 						<h3>{sonnet.number}</h3>
 						{sonnet.lines.map((line, index) => (
-							<p key={index}>{line}</p>
+							<p key={index}>{highlightSearchTerm(line)}</p>
 						))}
 					</div>
 				))}
@@ -34,7 +43,7 @@ export default function App() {
 
 /* Challenge
 
-  When the user clicks the "Search" button, the text they wrote in the input field becomes the value of the searchInput state (this code has already been written). Using this value, your task is to complete the user's search as follows: 
+  When the user clicks the "Search" button, the text they wrote in the input field becomes the value of the searchInput state (this code has already been written). Using this value, your task is to complete the users' search as follows: 
   
     1. For each sonnet in the sonnetsData array that contains the searchInput value in one of its 
        lines, create a div with a className of "sonnet" in the "sonnets-container" div (line 34). 
