@@ -17,7 +17,7 @@ export default function App() {
 		const nonClickedEmojis = currentEmojis.filter(e => e !== emoji)
 		setPassedEmojis(prevPassedEmojis => [...prevPassedEmojis, ...nonClickedEmojis])
 
-		setCurrentEmojis(() => getRandomEmojis())
+		setCurrentEmojis(getRandomEmojis)
 	}
 
 	function getRandomEmojis() {
