@@ -23,8 +23,8 @@ export default function DebatePost() {
 	function handleComment() {
 		const newComment = {
 			id: comments.length + 1,
-			username: anonymous ? 'Anonymous' : username,
-			text: text,
+			userName: anonymous ? 'Anonymous' : username,
+			commentText: text,
 		}
 		setComments([...comments, newComment])
 
@@ -50,13 +50,14 @@ export default function DebatePost() {
 					placeholder="Enter username."
 					value={username}
 					onChange={handleUserName}
+					required
 				/>
-				<textarea placeholder="What do you think?" value={text} onChange={handleText} />
+				<textarea placeholder="What do you think?" value={text} onChange={handleText} required />
 				<label>
 					<input className="checkbox" type="checkbox" checked={anonymous} onChange={handleAnonymous} />
 					Post anonymously?
 				</label>
-				<button onSubmit={handleComment}>Send</button>
+				<button type="submit">Send</button>
 			</form>
 		</div>
 	)
