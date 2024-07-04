@@ -354,23 +354,31 @@ export default function App() {
 		setPookachu(prev => {
 			let newXPosition = prev.xPosition
 			let newYPosition = prev.yPosition
-
 			switch (prev.direction) {
 				case 'right':
-					newXPosition = Math.min(prev.xPosition + 1, boundaries.xAxis.max)
+					if (prev.xPosition < boundaries.xAxis.max) {
+						newXPosition = prev.xPosition + 1
+					}
 					break
 				case 'left':
-					newXPosition = Math.max(prev.xPosition - 1, boundaries.xAxis.min)
+					if (prev.xPosition > boundaries.xAxis.min) {
+						newXPosition = prev.xPosition - 1
+					}
 					break
 				case 'up':
-					newYPosition = Math.max(prev.yPosition - 1, boundaries.yAxis.min)
+					if (prev.yPosition > boundaries.yAxis.min) {
+						newYPosition = prev.yPosition - 1
+					}
 					break
 				case 'down':
-					newYPosition = Math.min(prev.yPosition + 1, boundaries.yAxis.max)
+					if (prev.yPosition < boundaries.yAxis.max) {
+						newYPosition = prev.yPosition + 1
+					}
 					break
 				default:
 					break
 			}
+
 			return {
 				...prev,
 				xPosition: newXPosition,
@@ -378,22 +386,6 @@ export default function App() {
 			}
 		})
 	}
-
-	// 1. When the updatePosition function is invoked, it should use the setPookachu function to
-	// 	   update the pookachu state object (line 49), in accordance with the boundaries state object (line 55), in the way described in the next step. With these two states, the following properties are particularly important for this challenge:
-
-	// 	+----------------------+------------------------------------------------------------+
-	// 	| boundaries.xAxis.min | The lowest possible value Pookachu's xPosition can be*     |
-	// 	+----------------------+------------------------------------------------------------+
-	// 	| boundaries.xAxis.max | The highest possible value Pookachu's xPosition can be*    |
-	// 	+----------------------+------------------------------------------------------------+
-	// 	| boundaries.yAxis.min | The lowest possible value Pookachu's yPosition can be*     |
-	// 	+----------------------+------------------------------------------------------------+
-	// 	| boundaries.yAxis.max | The highest possible value Pookachu's yPosition can be*    |
-	// 	+----------------------+------------------------------------------------------------+
-
-	// 		* All of these values are inclusive.
-	// 		  Pookachu's position can be on a boundary; it cannot exceed a boundary.
 
 	return (
 		<div className="wrapper" onKeyDown={gameStarted ? handleKey : startGame} onKeyUp={gameStarted ? handleKey : null}>
